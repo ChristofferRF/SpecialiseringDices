@@ -1,0 +1,13 @@
+C:\Users\chrome\Documents\MyProjects\Thirty 1.0\Thirty 1.0\bin\Debug\Thirty 1.0.exe.config
+C:\Users\chrome\Documents\MyProjects\Thirty 1.0\Thirty 1.0\bin\Debug\Thirty 1.0.exe
+C:\Users\chrome\Documents\MyProjects\Thirty 1.0\Thirty 1.0\bin\Debug\Thirty 1.0.pdb
+C:\Users\chrome\Documents\MyProjects\Thirty 1.0\Thirty 1.0\obj\Debug\Thirty 1.0.csprojResolveAssemblyReference.cache
+C:\Users\chrome\Documents\MyProjects\Thirty 1.0\Thirty 1.0\obj\Debug\Thirty_1._0.Form1.resources
+C:\Users\chrome\Documents\MyProjects\Thirty 1.0\Thirty 1.0\obj\Debug\Thirty_1._0.Properties.Resources.resources
+C:\Users\chrome\Documents\MyProjects\Thirty 1.0\Thirty 1.0\obj\Debug\Thirty 1.0.csproj.GenerateResource.Cache
+C:\Users\chrome\Documents\MyProjects\Thirty 1.0\Thirty 1.0\obj\Debug\Thirty 1.0.exe
+C:\Users\chrome\Documents\MyProjects\Thirty 1.0\Thirty 1.0\obj\Debug\Thirty 1.0.pdb
+C:\Users\chrome\Documents\MyProjects\Thirty 1.0\Thirty 1.0\bin\Debug\LogicLayer.dll
+C:\Users\chrome\Documents\MyProjects\Thirty 1.0\Thirty 1.0\bin\Debug\ModelLayer.dll
+C:\Users\chrome\Documents\MyProjects\Thirty 1.0\Thirty 1.0\bin\Debug\LogicLayer.pdb
+C:\Users\chrome\Documents\MyProjects\Thirty 1.0\Thirty 1.0\bin\Debug\ModelLayer.pdb

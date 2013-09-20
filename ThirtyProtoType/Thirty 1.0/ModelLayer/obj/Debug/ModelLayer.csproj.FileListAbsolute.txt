@@ -1,0 +1,5 @@
+C:\Users\chrome\Documents\MyProjects\Thirty 1.0\ModelLayer\bin\Debug\ModelLayer.dll
+C:\Users\chrome\Documents\MyProjects\Thirty 1.0\ModelLayer\bin\Debug\ModelLayer.pdb
+C:\Users\chrome\Documents\MyProjects\Thirty 1.0\ModelLayer\obj\Debug\ModelLayer.csprojResolveAssemblyReference.cache
+C:\Users\chrome\Documents\MyProjects\Thirty 1.0\ModelLayer\obj\Debug\ModelLayer.dll
+C:\Users\chrome\Documents\MyProjects\Thirty 1.0\ModelLayer\obj\Debug\ModelLayer.pdb
