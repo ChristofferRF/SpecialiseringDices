@@ -5,3 +5,5 @@ C:\Users\chrome\Documents\MyProjects\Thirty 1.0\LogicLayer\bin\Debug\ModelLayer.
 C:\Users\chrome\Documents\MyProjects\Thirty 1.0\LogicLayer\bin\Debug\ModelLayer.pdb
 C:\Users\chrome\Documents\MyProjects\Thirty 1.0\LogicLayer\obj\Debug\LogicLayer.dll
 C:\Users\chrome\Documents\MyProjects\Thirty 1.0\LogicLayer\obj\Debug\LogicLayer.pdb
+C:\Users\chrome\Documents\Specialisering\SpecialiseringGit\ThirtyProtoType\Thirty 1.0\LogicLayer\obj\Debug\LogicLayer.csprojResolveAssemblyReference.cache
+C:\Users\chrome\Documents\Specialisering\SpecialiseringGit\ThirtyProtoType\Thirty 1.0\LogicLayer\obj\Debug\LogicLayer.dll
