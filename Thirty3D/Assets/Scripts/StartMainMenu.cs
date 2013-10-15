@@ -4,8 +4,8 @@ using System.Collections;
 public class StartMainMenu : MonoBehaviour {
 	public Texture2D player1Png;
 	public Texture2D player2Png;
-	public string player1Name;
-	public string player2Name;
+	public string player1Name = "player 1";
+	public string player2Name = "player 2";
 		
 
 	// Use this for initialization
@@ -26,7 +26,7 @@ public class StartMainMenu : MonoBehaviour {
 		//player one box
 		GUI.BeginGroup(new Rect(0, 0, Screen.width,Screen.height));
 		GUI.Box(new Rect(0 + Screen.width/2 - 175, 0 + Screen.height/2 -135,350,50), "");
-		player1Name = GUI.TextField(new Rect(0 + Screen.width/2 - 75, 0 + Screen.height/2 -125,150,30),"Player 1");
+		player1Name = GUI.TextField(new Rect(0 + Screen.width/2 - 75, 0 + Screen.height/2 -125,150,30),player1Name);
 		GUI.Label(new Rect(0 + Screen.width/2 - 160, 0 + Screen.height/2 -120,150,30),"1");
 		GUI.Label(new Rect(0 + Screen.width/2 - 120, 0 + Screen.height/2 -135,150,50),player1Png);
 		GUI.EndGroup();
@@ -34,7 +34,7 @@ public class StartMainMenu : MonoBehaviour {
 		//player two box
 		GUI.BeginGroup(new Rect(0, 0, Screen.width,Screen.height));
 		GUI.Box(new Rect(0 + Screen.width/2 - 175, 0 + Screen.height/2 -75,350,50), "");
-		player2Name = GUI.TextField(new Rect(0 + Screen.width/2 - 75, 0 + Screen.height/2 -65,150,30),"Player 2");
+		player2Name = GUI.TextField(new Rect(0 + Screen.width/2 - 75, 0 + Screen.height/2 -65,150,30),player2Name);
 		GUI.Label(new Rect(0 + Screen.width/2 - 160, 0 + Screen.height/2 -60,150,30),"2");
 		GUI.Label(new Rect(0 + Screen.width/2 - 120, 0 + Screen.height/2 -75,150,50),player2Png);
 		GUI.EndGroup();
@@ -43,7 +43,7 @@ public class StartMainMenu : MonoBehaviour {
 			GUI.Box(new Rect(0, 0, Screen.width,Screen.height), "Main Menu");
 			if(GUI.Button(new Rect(0 + Screen.width/2 - 65, 0 + Screen.height/2, 130, 50), "Start Game"))
 			{
-			
+				StartGame();
 				Application.LoadLevel ("sceneProto"); 
 			}
 			if(GUI.Button(new Rect(0 + Screen.width/2 - 65, (0 + Screen.height/2) + 60, 130, 50), "Exit Game"))
@@ -51,5 +51,11 @@ public class StartMainMenu : MonoBehaviour {
 				Application.Quit();
 			}
 		GUI.EndGroup();
+	}
+	
+	private void StartGame()
+	{
+		DontDestroyOnLoad(GameManager.Instance);
+		GameManager.Instance.StartState(player1Name, player2Name);
 	}
 }

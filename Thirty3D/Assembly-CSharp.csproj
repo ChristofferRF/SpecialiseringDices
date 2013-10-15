@@ -45,9 +45,12 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Dice.cs" />
+     <Compile Include="Assets\Scripts\Dices.cs" />
+     <Compile Include="Assets\Scripts\Game.cs" />
      <Compile Include="Assets\Scripts\GameGUI.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
+     <Compile Include="Assets\Scripts\Players.cs" />
      <Compile Include="Assets\Scripts\StartMainMenu.cs" />
      <None Include="Assets\coastal_gun_battery\coastal_gun_battery_notes.txt" />
      <None Include="Assets\Standard Assets\Skyboxes\skybox info.txt" />

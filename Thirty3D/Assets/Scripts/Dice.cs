@@ -2,16 +2,17 @@
 using System.Collections;
 
 public class Dice : MonoBehaviour {
-	public int number;
-	public int id;
-	public bool isActive;
+	public int Number { get; set; }
+    public int Id { get; set; }
+    public bool IsActive { get; set; }
 	public Texture2D dicePng;
 	public float x;
 	public float y;
 
 	// Use this for initialization
 	void Start () {
-	
+		this.Number = 0;
+		this.IsActive = true;
 	}
 	
 	// Update is called once per frame
