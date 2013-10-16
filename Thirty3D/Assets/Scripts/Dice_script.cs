@@ -11,8 +11,7 @@ public class Dice_script : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		this.Number = 0;
-		this.IsActive = true;
+		
 	}
 	
 	// Update is called once per frame
@@ -22,6 +21,13 @@ public class Dice_script : MonoBehaviour {
 	
 	void OnGUI() {
 		GUI.Button(new Rect(x,y,56.5f,55.75f), dicePng);
+	}
+	
+	void Awake()
+	{
+		this.Number = 0;
+		this.Id = 0;
+		this.IsActive = true;
 	}
 		
 }

@@ -5,12 +5,12 @@ using System.Collections.Generic;
 
 public class GameManager_script : MonoBehaviour {
 	
-//	public List<GameObject> PlayersInGame { get; set; }
-//	public List<GameObject> DicesInGame { get; set; }
+	public List<Player_script> PlayersInGame { get; set; }
+	public List<Dice_script> DicesInGame { get; set; }
     public Game_script game { get; set; }
     public Queue<Player_script> playerQueue { get; set; }
 	private string name;
-	private Component mng_script;
+
 	
 	private static GameManager_script managerInstance;
 	// Use this for initialization
@@ -48,8 +48,9 @@ public class GameManager_script : MonoBehaviour {
 		
 		Game_script.GameInstance.StartGameState();
 		Debug.Log("tableScore: " + Game_script.GameInstance.TableScore.ToString() + " canroll: " +Game_script.GameInstance.canRoll.ToString());
-//        this.PlayersInGame = new List<Player_script>();
-//        this.DicesInGame = new List<Dice_script>();
+        this.PlayersInGame = new List<Player_script>();
+        this.DicesInGame = new List<Dice_script>();
+		
 //        this.playerQueue = new Queue<Player_script>();
 //		game._gameState = Game_script.State.running;
 	}
@@ -60,65 +61,66 @@ public class GameManager_script : MonoBehaviour {
 		print("Creating a new game Manager instance");
 
    
-//        this.AddDicesToGame();
+
 //        game.Turn = 1; //player no 1 starts the game
-//		AddPlayer(player1Name, "Human");
-//		AddPlayer(player2Name, "Human");
-      
+		AddPlayer(player1Name, "Human");
+		AddPlayer(player2Name, "Human");
+      	this.AddDicesToGame();
 //        SetupQueue();
 	}
 	
-//	private void AddPlayer(string name, string type)
-//	{
-//		Debug.Log("input from caller: " + name + " " + type);
-//		Debug.Log("adding player to game");
-//        int playerNo = PlayersInGame.Count;
-//        playerNo++;
-//        if (playerNo > 2)
-//        {
-//            Debug.Log("more than 2 players in game - NO GO");
-//        }
-//        else
-//        {
-//            Player player = new GameObject("Player");
-//			player.Name = name;
-//			Debug.Log("added player named: " + player.Name);
-//			player.Type = type;
-//			player.PlayerNumber = playerNo;
-//            PlayersInGame.Add(player);
-//            if (player.PlayerNumber == 1)
-//            {
-//                game.playerWithTurn = player;
-//            }
-//        }
-//	}
+	private void AddPlayer(string name, string type)
+	{
+		Debug.Log("input from caller: " + name + " " + type);
+		Debug.Log("adding player to game");
+        int playerNo = PlayersInGame.Count;
+        playerNo++;
+        if (playerNo > 2)
+        {
+            Debug.Log("more than 2 players in game - NO GO");
+        }
+        else
+        {
+            Player_script ps = new GameObject("Player_script").AddComponent<Player_script>();
+			ps.Name = name;
+			Debug.Log("added player named: " + ps.Name);
+			ps.Type = type;
+			ps.PlayerNumber = playerNo;
+            PlayersInGame.Add(ps);
+            if (ps.PlayerNumber == 1)
+            {
+                Game_script.GameInstance.playerWithTurn = ps;
+            }
+        }
+	}
 	
-//	private void ThrowDices()
-//	{
-//		//check statemachine that player is able to Roll again
-//        for (int i = 0; i <= DicesInGame.Count-1; i++)
-//        {
-//            if (DicesInGame[i].IsActive == true)
-//            {
-//                DicesInGame[i].Number = Random.Range(1, 7);
-//            }
-//            else
-//            {
-//                DicesInGame[i].Number = 0;
-//            } 
-//        }
-//	}
+	public void ThrowDices()
+	{
+		//check statemachine that player is able to Roll again
+        for (int i = 0; i <= DicesInGame.Count-1; i++)
+        {
+            if (DicesInGame[i].IsActive == true)
+            {
+                DicesInGame[i].Number = Random.Range(1, 7);
+            }
+            else
+            {
+                DicesInGame[i].Number = 0;
+            } 
+        }
+	}
 	
-//	private void AddDicesToGame()
-//	{
-//		//for loop adding 6 dices to the game
-//		for(int i = 0; i < 5; i++)
-//		{
-//			Dice d = new GameObject("Dice").AddComponent<Dice_script>();
-//			d.Id = i;
-//			DicesInGame.Add(d);
-//		}
-//	}
+	private void AddDicesToGame()
+	{
+		//for loop adding 6 dices to the game
+		for(int i = 1; i <= 6; i++)
+		{
+			Dice_script d = new GameObject("Dice_script").AddComponent<Dice_script>();
+			d.Id = i;
+			Debug.Log("Dice id: " + d.Id.ToString());
+			DicesInGame.Add(d);
+		}
+	}
 	
 //	 public void FinishTurn()
 //        {
@@ -263,11 +265,11 @@ public class GameManager_script : MonoBehaviour {
 //        PlayersInGame.Add(player);
 //    }
 
-//    public Player_script FindPlayer(int playerNo)
-//    {
-//        Player_script player = PlayersInGame[playerNo];
-//        return player;
-//    }
+    public Player_script FindPlayer(int playerNo)
+    {
+        Player_script player = PlayersInGame[playerNo];
+        return player;
+    }
 
 //    public void DeletePlayer(Player_script player)
 //    {
