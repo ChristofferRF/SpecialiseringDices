@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player : MonoBehaviour {
+public class Player_script : MonoBehaviour {
 	public string Name {get; set;}
 	public string Type { get; set; }
     public int PlayerNumber { get; set; }

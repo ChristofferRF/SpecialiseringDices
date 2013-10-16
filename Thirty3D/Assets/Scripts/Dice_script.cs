@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Dice : MonoBehaviour {
+public class Dice_script : MonoBehaviour {
 	public int Number { get; set; }
     public int Id { get; set; }
     public bool IsActive { get; set; }

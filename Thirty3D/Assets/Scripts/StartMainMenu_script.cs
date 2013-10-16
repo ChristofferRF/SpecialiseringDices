@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class StartMainMenu : MonoBehaviour {
+public class StartMainMenu_script : MonoBehaviour {
 	public Texture2D player1Png;
 	public Texture2D player2Png;
 	public string player1Name = "player 1";
@@ -55,7 +55,7 @@ public class StartMainMenu : MonoBehaviour {
 	
 	private void StartGame()
 	{
-		DontDestroyOnLoad(GameManager.Instance);
-		GameManager.Instance.StartState(player1Name, player2Name);
+		DontDestroyOnLoad(GameManager_script.ManagerInstance);
+		GameManager_script.ManagerInstance.StartState(player1Name, player2Name);
 	}
 }
