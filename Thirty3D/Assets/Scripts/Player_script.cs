@@ -31,7 +31,7 @@ public class Player_script : MonoBehaviour {
 		this.Name = "";
         this.Type = "";
         this.PlayerNumber = 0;
-        this.Score = 0;
+        this.Score = 30;
         this.PlayersTurn = 0;
         this.Roll = 0;
 	}

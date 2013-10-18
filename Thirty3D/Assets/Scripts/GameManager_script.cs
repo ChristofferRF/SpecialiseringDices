@@ -279,26 +279,26 @@ public class GameManager_script : MonoBehaviour {
 //        }
 //    }
 	
-//	public Dice_script GetDice(int diceId)
-//    {
-//        int index = 0;
-//        bool found = false;
-//        Dice_script d = null;
-//
-//        while (index < DicesInGame.Count && !found)
-//        {
-//            d = DicesInGame[index];
-//            if (d.Id == diceId)
-//            {
-//                found = true;
-//            }
-//            else
-//            {
-//                index++;
-//            }
-//        }
-//        return d;
-//    }
+	public Dice_script GetDice(int diceId)
+    {
+        int index = 0;
+        bool found = false;
+        Dice_script d = null;
+
+        while (index < DicesInGame.Count && !found)
+        {
+            d = DicesInGame[index];
+            if (d.Id == diceId)
+            {
+                found = true;
+            }
+            else
+            {
+                index++;
+            }
+        }
+        return d;
+    }
 }
 
     
