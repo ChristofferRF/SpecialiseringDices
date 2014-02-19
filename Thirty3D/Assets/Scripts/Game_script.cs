@@ -16,12 +16,12 @@ public class Game_script : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		this.Turn = 0;
-        this.TableScore = 0;
-        this.playerWithTurn = null;
-        this.ThirtyDigit = -1; //default state that shows no digits when game is not in thirty mode
-        this.canRoll = false; // boolean value that decides whether or not the player can roll again. 
-        this.winnerName = "";
+//		this.Turn = 0;
+//        this.TableScore = 0;
+//        this.playerWithTurn = null;
+//        this.ThirtyDigit = -1; //default state that shows no digits when game is not in thirty mode
+//        this.canRoll = false; // boolean value that decides whether or not the player can roll again. 
+//        this.winnerName = "";
 	}
 	
 	// Update is called once per frame

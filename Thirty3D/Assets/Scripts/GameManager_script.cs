@@ -47,26 +47,25 @@ public class GameManager_script : MonoBehaviour {
 		Debug.Log("waking up");
 		
 		Game_script.GameInstance.StartGameState();
+		game = Game_script.GameInstance;
 		Debug.Log("tableScore: " + Game_script.GameInstance.TableScore.ToString() + " canroll: " +Game_script.GameInstance.canRoll.ToString());
         this.PlayersInGame = new List<Player_script>();
         this.DicesInGame = new List<Dice_script>();
 		
-//        this.playerQueue = new Queue<Player_script>();
-//		game._gameState = Game_script.State.running;
+        this.playerQueue = new Queue<Player_script>();
+		game._gameState = Game_script.State.running;
+		
 	}
 	
 	//start op the GameManager
 	public void StartState(string player1Name, string player2Name)
 	{
-		print("Creating a new game Manager instance");
-
-   
-
-//        game.Turn = 1; //player no 1 starts the game
+		Debug.Log("Creating a new game Manager instance");
+		game.StartGameState();
 		AddPlayer(player1Name, "Human");
 		AddPlayer(player2Name, "Human");
       	this.AddDicesToGame();
-//        SetupQueue();
+        SetupQueue();
 	}
 	
 	private void AddPlayer(string name, string type)
@@ -89,7 +88,9 @@ public class GameManager_script : MonoBehaviour {
             PlayersInGame.Add(ps);
             if (ps.PlayerNumber == 1)
             {
-                Game_script.GameInstance.playerWithTurn = ps;
+				Debug.Log("player 1 starts with turn");
+                game.playerWithTurn = ps;
+				Debug.Log(ps.Name);
             }
         }
 	}
@@ -122,162 +123,151 @@ public class GameManager_script : MonoBehaviour {
 		}
 	}
 	
-//	 public void FinishTurn()
-//        {
-//            if (game._gameState != Game_script.State.thirty)
-//            {
-//                int tSccore = game.TableScore;
-//
-//                if(tSccore == 30)
-//                {
-//                    Debug.Log("tablescore is 30 finish turn and rotate player");
-//                    //player has reached 30 points and will get no minus points
-//                    ResetDicesTableScore();
-//                    RotatePlayerTurn();
-//                }
-//                else if (tSccore > 30 && tSccore < 37)
-//                {
-//                    //player has more than 30 in score and must go into thirty mode
-//                    game._gameState = Game_script.State.thirty;
-//                    //set thirty digit to roll with thirty switch
-//                    SetThirtyDigit(tSccore);
-//                    ResetDicesTableScore();
-//
-//
-//                }
-//                else if (tSccore < 30)
-//                {
-//                    //player has less than 30 in score and must receive minus points equal to difference to thity
-//                    int minusPoints = 30 - tSccore;
-//                    game.playerWithTurn.Score = game.playerWithTurn.Score + minusPoints;
-//                    ResetDicesTableScore();
-// 
-//                    RotatePlayerTurn();
-//                }   
-//            }
-//            Checkplayerscores();
-//        }
+	 public void FinishTurn()
+        {
+            if (game._gameState != Game_script.State.thirty)
+            {
+                int tSccore = game.TableScore;
+
+                if(tSccore == 30)
+                {
+                    Debug.Log("tablescore is 30 finish turn and rotate player");
+                    //player has reached 30 points and will get no minus points
+                    ResetDicesTableScore();
+                    RotatePlayerTurn();
+                }
+                else if (tSccore > 30 && tSccore < 37)
+                {
+					Debug.Log("score above 30");
+                    //player has more than 30 in score and must go into thirty mode
+                    game._gameState = Game_script.State.thirty;
+                    //set thirty digit to roll with thirty switch
+                    SetThirtyDigit(tSccore);
+                    ResetDicesTableScore();
+
+
+                }
+                else if (tSccore < 30)
+                {
+                    //player has less than 30 in score and must receive minus points equal to difference to thity
+                    int minusPoints = 30 - tSccore;
+                    game.playerWithTurn.Score = game.playerWithTurn.Score - minusPoints;
+                    ResetDicesTableScore();
+ 
+                    RotatePlayerTurn();
+                }   
+            }
+            Checkplayerscores();
+        }
 	
-//	public void finishThirty()
-//    {
-//        int tSccore = game.TableScore;
-//        if (tSccore == 0)
-//        {
-//            ResetDicesTableScore();
-//            game.ThirtyDigit = -1; //reset the thirty digit to default state
-//            game._gameState = Game_script.State.running;
-//            RotatePlayerTurn();
-//        }
-//        else
-//        {
-//            int subPoints = tSccore;
-//            //subtract points from the player who is next in queue, by using first method on Queue
-//            Player_script p = (Player_script)playerQueue.Peek();
-//            p.Score = p.Score + subPoints;
-//            ResetDicesTableScore();
-//            game.ThirtyDigit = -1; //reset the thirty digit to default state
-//            game._gameState = Game_script.State.running;
-//            RotatePlayerTurn();
-//        }
-//        Checkplayerscores();
-//    }
+	public void finishThirty()
+    {
+        int tSccore = game.TableScore;
+        if (tSccore == 0)
+        {
+            ResetDicesTableScore();
+            game.ThirtyDigit = -1; //reset the thirty digit to default state
+            game._gameState = Game_script.State.running;
+            RotatePlayerTurn();
+        }
+        else
+        {
+            int subPoints = tSccore;
+            //subtract points from the player who is next in queue, by using first method on Queue
+            Player_script p = (Player_script)playerQueue.Peek();
+            p.Score = p.Score - subPoints;
+            ResetDicesTableScore();
+            game.ThirtyDigit = -1; //reset the thirty digit to default state
+            game._gameState = Game_script.State.running;
+            RotatePlayerTurn();
+        }
+        Checkplayerscores();
+    }
 	
-//	private void RotatePlayerTurn()
-//    {
-//        Debug.Log("player with turn: " + game.playerWithTurn.PlayerNumber);
-//        Player_script p = playerQueue.Dequeue();
-//        game.playerWithTurn = p;
-//        playerQueue.Enqueue(game.playerWithTurn);
-//        Debug.Log("player to get turn: " + game.playerWithTurn.PlayerNumber);
-//
-//    }
+	public void RotatePlayerTurn()
+    {
+        Debug.Log("player with turn: " + game.playerWithTurn.PlayerNumber);
+        Player_script p = playerQueue.Dequeue();
+        game.playerWithTurn = p;
+        playerQueue.Enqueue(game.playerWithTurn);
+        Debug.Log("player to get turn: " + game.playerWithTurn.PlayerNumber);
+
+    }
 	
-//	private void SetupQueue()
-//    {
-//        //setup variable of playercount -1 to fit structure of list index of 0 -> 1
-//        int noOfPlayers = PlayersInGame.Count;
-//
-//        for (int i = noOfPlayers; i-- > 0;)
-//        {
-//            Debug.Log("index: " + i);
-//            playerQueue.Enqueue(PlayersInGame[i]); //add all players in game to the stack backwards
-//
-//        }
-//    }
+	private void SetupQueue()
+    {
+        //setup variable of playercount -1 to fit structure of list index of 0 -> 1
+        int noOfPlayers = PlayersInGame.Count;
+
+        for (int i = noOfPlayers; i-- > 0;)
+        {
+            Debug.Log("index: " + i);
+            playerQueue.Enqueue(PlayersInGame[i]); //add all players in game to the stack backwards
+
+        }
+    }
 	
-//	private void ResetDicesTableScore()
-//    {
-//        //reset the table score
-//        game.TableScore = 0;
-//
-//        //reset all dices to be active
-//        foreach (Dice_script d in DicesInGame)
-//        {
-//            d.IsActive = true;
-//        }
-//    }
+	private void ResetDicesTableScore()
+    {
+        //reset the table score
+        game.TableScore = 0;
+
+        //reset all dices to be active
+        foreach (Dice_script d in DicesInGame)
+        {
+            d.IsActive = true;
+			Debug.Log("dice no: " + d.Id+ "isActive: " + d.IsActive.ToString());
+        }
+    }
 	
-//	private void SetThirtyDigit(int tableScore)
-//    {
-//        switch (tableScore)
-//        {
-//            case 31:
-//                game.ThirtyDigit = 1;
-//                break;
-//            case 32:
-//                game.ThirtyDigit = 2;
-//                break;
-//            case 33:
-//                game.ThirtyDigit = 3;
-//                break;
-//            case 34:
-//                game.ThirtyDigit = 4;
-//                break;
-//            case 35:
-//                game.ThirtyDigit = 5;
-//                break;
-//            case 36:
-//                game.ThirtyDigit = 6;
-//                break;
-//            default:
-//                break;
-//        }
-//    }
+	private void SetThirtyDigit(int tableScore)
+    {
+        switch (tableScore)
+        {
+            case 31:
+                game.ThirtyDigit = 1;
+                break;
+            case 32:
+                game.ThirtyDigit = 2;
+                break;
+            case 33:
+                game.ThirtyDigit = 3;
+                break;
+            case 34:
+                game.ThirtyDigit = 4;
+                break;
+            case 35:
+                game.ThirtyDigit = 5;
+                break;
+            case 36:
+                game.ThirtyDigit = 6;
+                break;
+            default:
+                break;
+        }
+    }
 	
-//	 private void Checkplayerscores()
-//    {
-//        string playerNameWinner = "";
-//        int i = 0;
-//
-//        while(i < PlayersInGame.Count)
-//        {
-//            if (PlayersInGame[i].Score == 30 || PlayersInGame[i].Score > 30)
-//            {
-//                game._gameState = Game_script.State.gameover;
-//                playerNameWinner = PlayersInGame[i].Name;
-//            }
-//            i++;
-//        }
-//    }
-	
-//	public void AddPlayer(Player_script player)
-//    {
-//        PlayersInGame.Add(player);
-//    }
+	 private void Checkplayerscores()
+    {
+        string playerNameWinner = "";
+        int i = 0;
+
+        while(i < PlayersInGame.Count)
+        {
+            if (PlayersInGame[i].Score == 0 || PlayersInGame[i].Score < 0)
+            {
+                game._gameState = Game_script.State.gameover;
+                playerNameWinner = PlayersInGame[i].Name;
+            }
+            i++;
+        }
+    }
 
     public Player_script FindPlayer(int playerNo)
     {
         Player_script player = PlayersInGame[playerNo];
         return player;
     }
-
-//    public void DeletePlayer(Player_script player)
-//    {
-//        if (player != null)
-//        {
-//            PlayersInGame.Remove(player);
-//        }
-//    }
 	
 	public Dice_script GetDice(int diceId)
     {
